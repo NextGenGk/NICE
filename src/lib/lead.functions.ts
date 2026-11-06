@@ -25,7 +25,7 @@ function scoreLead(input: z.infer<typeof LeadInput>): number {
 }
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => LeadInput.parse(data))
+  .validator((data: unknown) => LeadInput.parse(data))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const lead_score = scoreLead(data);
